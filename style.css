@@ -1,3 +1,7 @@
-.eachDiv {
-    background-color: yellow;
+.horizontalLine {
+    display: flex
+}
+.contenedor {
+    display:flex;
+    flex-direction: column;
 }
