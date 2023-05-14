@@ -1,7 +1,14 @@
 .horizontalLine {
-    display: flex
+    display: flex;
 }
 .contenedor {
     display:flex;
     flex-direction: column;
+    border:2px solid black;
+    width: 616px;
+    height: 616px;
+    flex-grow: 0;
+}
+.eachDiv {
+    border: 0.5px solid gray;
 }
