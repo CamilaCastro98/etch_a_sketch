@@ -117,11 +117,14 @@ function stablishRandomColor() {
 function getRandomColor() {
   let randomColor = ''
   let randomNumber
-      for(let i=0; i<6; i++){
-          randomNumber = (Math.random()*10).toFixed()
-          randomColor = `${randomColor}${randomNumber}`
+  let randomArray = []
+      for(let i=0; i<3; i++){
+          randomNumber = (Math.random()*250).toFixed()
+          if(randomNumber<=250) {
+            randomArray[i] = randomNumber
+          } else {i--}
   }
-  randomColor = `#${randomColor}`
+  randomColor = `RGB(${randomArray[0]},${randomArray[1]},${randomArray[2]})`
   return randomColor
 }
 createGrid()
