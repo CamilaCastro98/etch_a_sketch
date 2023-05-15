@@ -9,6 +9,8 @@ var isRainbowOn = false
 var originalColor = color
 const range = document.querySelector('.range')
 const pickRange = document.querySelector('.pickRange')
+const gridLines = document.querySelector('.gridLines')
+var areLinesOn = true
 const rangeResult = document.querySelector('.rangeResult')
 var rangeValue = 16
 rangeResult.textContent = `${rangeValue}`
@@ -30,6 +32,28 @@ function createGrid() {
     document.querySelector('body').appendChild(contenedor)
     getTheDraw()
     changeColor()
+}
+
+
+function removeGridLines(a) {
+    getGridSize()
+    gridLines.addEventListener('click',()=> {
+        if(areLinesOn) {
+            areLinesOn = false
+                a.forEach(div=> {
+                div.classList.remove('eachDiv')
+                div.classList.add('NoLines')
+        })
+        } else {
+            areLinesOn = true
+                a.forEach(div=> {
+                div.classList.add('eachDiv')
+                div.classList.remove('NoLines')
+            })
+            
+        }
+    })
+
 }
 
 function getGridSize() {
@@ -59,6 +83,7 @@ function getTheDraw() {
     getClearAll(gridDivs)
     getEraser(gridDivs)
     getRainbow(gridDivs)
+    removeGridLines(gridDivs)
 }
 
 function getHover(a) {

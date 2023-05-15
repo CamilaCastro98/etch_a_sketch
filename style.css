@@ -16,7 +16,13 @@ body {
     height: 100%;
     flex-grow: 0;
 }
+.eachDiv,
+.NoLines {
+    background-color: whitesmoke;
+}
 .eachDiv {
     box-shadow:inset 0px 0px 0px 0.5px gray;
-    background-color: whitesmoke;
+}
+.NoLines {
+    box-shadow: none;
 }
