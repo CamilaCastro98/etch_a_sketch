@@ -4,6 +4,7 @@ const colorInput = document.querySelector('.colorInput')
 var color = '#000000'
 const clearAll = document.querySelector('.clearAll')
 const eraser = document.querySelector('.eraser')
+const rainbow = document.querySelector('.rainbow')
 
 function createGrid() {
     for(let i=0; i<16; i++) {
@@ -43,6 +44,7 @@ function getHover() {
         })
     getClearAll(gridDivs)
     getEraser(gridDivs)
+    getRainbow(gridDivs)
 }
 
 function changeColor() {
@@ -63,6 +65,26 @@ function getEraser(a) {
     eraser.addEventListener('click',()=>{
         color = 'white'
     })
+}
+
+function getRainbow(a) {
+    rainbow.addEventListener('click',()=>{
+        a.forEach(div =>{
+           randomColor()
+           div.backgroundColor = color
+        })
+    })
+}
+
+function randomColor() {
+    let randomColor = ''
+    let randomNumber
+        for(let i=0; i<6; i++){
+            randomNumber = (Math.random()*10).toFixed()
+            randomColor = `${randomColor}${randomNumber}`
+    }
+    randomColor = `#${randomColor}`
+    color = randomColor
 }
 createGrid()
 
