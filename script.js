@@ -1,5 +1,7 @@
 const contenedor = document.createElement('div')
 contenedor.classList.add('contenedor')
+const colorInput = document.querySelector('.colorInput')
+var color = '#000000'
 function createGrid() {
     for(let i=0; i<16; i++) {
         let n = 16
@@ -17,10 +19,11 @@ function createGrid() {
      }   
     document.querySelector('body').appendChild(contenedor)
     getHover()
+    changeColor()
 }
 
 function paintDivs() {
-    this.style.backgroundColor = 'black'
+    this.style.backgroundColor = color
 }
 
 function getHover() {
@@ -37,4 +40,11 @@ function getHover() {
         })
 }
 
+function changeColor() {
+colorInput.addEventListener('input',(e)=>{
+    color = `${e.target.value}`
+})
+}
+
 createGrid()
+
