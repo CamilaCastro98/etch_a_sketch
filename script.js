@@ -2,6 +2,9 @@ const contenedor = document.createElement('div')
 contenedor.classList.add('contenedor')
 const colorInput = document.querySelector('.colorInput')
 var color = '#000000'
+const clearAll = document.querySelector('.clearAll')
+const eraser = document.querySelector('.eraser')
+
 function createGrid() {
     for(let i=0; i<16; i++) {
         let n = 16
@@ -38,13 +41,28 @@ function getHover() {
                 div.removeEventListener('mousemove',paintDivs)
             })
         })
+    getClearAll(gridDivs)
+    getEraser(gridDivs)
 }
 
 function changeColor() {
-colorInput.addEventListener('input',(e)=>{
-    color = `${e.target.value}`
-})
+    colorInput.addEventListener('input',(e)=>{
+        color = `${e.target.value}`
+    })
 }
 
+function getClearAll(a) {
+    clearAll.addEventListener('click',()=>{
+        a.forEach(div =>{
+            div.style.backgroundColor = 'white'
+        })
+    })
+}
+
+function getEraser(a) {
+    eraser.addEventListener('click',()=>{
+        color = 'white'
+    })
+}
 createGrid()
 
