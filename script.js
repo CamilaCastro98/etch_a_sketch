@@ -69,14 +69,25 @@ function getEraser(a) {
 
 function getRainbow(a) {
     rainbow.addEventListener('click',()=>{
-        a.forEach(div =>{
-           randomColor()
-           div.backgroundColor = color
+        contenedor.addEventListener('mousedown',()=>{
+            a.forEach(div =>{
+                div.addEventListener('mousemove',stablishRandomColor)
+             })
+        })
+        contenedor.addEventListener('mouseup',()=>{
+            a.forEach(div => {
+                div.removeEventListener('mousemove',stablishRandomColor)
+            })
         })
     })
 }
 
-function randomColor() {
+function stablishRandomColor() {
+    const randomColor = getRandomColor()
+            this.style.backgroundColor = randomColor
+}
+
+function getRandomColor() {
     let randomColor = ''
     let randomNumber
         for(let i=0; i<6; i++){
@@ -84,7 +95,7 @@ function randomColor() {
             randomColor = `${randomColor}${randomNumber}`
     }
     randomColor = `#${randomColor}`
-    color = randomColor
+    return randomColor
 }
 createGrid()
 
