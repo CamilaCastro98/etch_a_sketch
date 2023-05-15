@@ -5,7 +5,6 @@ var color = '#000000'
 const clearAll = document.querySelector('.clearAll')
 const eraser = document.querySelector('.eraser')
 const rainbow = document.querySelector('.rainbow')
-const stopR = document.querySelector('.stopR')
 var isRainbowOn = false
 var originalColor = color
 const range = document.querySelector('.range')
@@ -77,6 +76,7 @@ function getHover(a) {
 
 function changeColor() {
     colorInput.addEventListener('input',(e)=>{
+        isRainbowOn = false
         color = `${e.target.value}`
         originalColor = color
     })
@@ -92,6 +92,7 @@ function getClearAll(a) {
 
 function getEraser(a) {
     eraser.addEventListener('click',()=>{
+        isRainbowOn = false
         color = 'white'
     })
 }
@@ -101,11 +102,6 @@ function getRainbow(a) {
       isRainbowOn = true
       getRainbowOn(a) 
   })
-  stopR.addEventListener('click',()=>{
-    isRainbowOn = false
-    colorInput.value = originalColor;
-    getRainbowOn(a)
-})
 }
 
 function getRainbowOn(a) {
