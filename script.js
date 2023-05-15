@@ -8,16 +8,17 @@ const rainbow = document.querySelector('.rainbow')
 const stopR = document.querySelector('.stopR')
 var isRainbowOn = false
 var originalColor = color
-
+const range = document.querySelector('.range')
+const pickRange = document.querySelector('.pickRange')
+var rangeValue = 16
 
 function createGrid() {
-    for(let i=0; i<16; i++) {
-        let n = 16
-        let eachDivSize = 600/n
+    for(let i=0; i<rangeValue; i++) {
+        let eachDivSize = 600/rangeValue
         var horizontalLine = document.createElement('div')
         horizontalLine.classList.add('horizontalLine')
         contenedor.appendChild(horizontalLine)
-            for(let i=0 ; i<16 ; i++) {
+            for(let i=0 ; i<rangeValue ; i++) {
                 var div=document.createElement('div')
                 div.classList.add('eachDiv')
                 div.style.width = eachDivSize + 'px'
@@ -28,6 +29,23 @@ function createGrid() {
     document.querySelector('body').appendChild(contenedor)
     getTheDraw()
     changeColor()
+}
+
+function getGridSize() {
+    const gridDivs = document.querySelectorAll('.eachDiv')
+    range.addEventListener('input',(e)=>{
+        rangeValue = e.target.value
+    })
+    pickRange.addEventListener('click',()=>{
+        deleteContenedorChild()
+        createGrid()
+    })
+}
+
+function deleteContenedorChild() {
+    while(contenedor.firstChild) {
+        contenedor.removeChild(contenedor.lastChild)
+    }
 }
 
 function paintDivs() {
@@ -128,3 +146,4 @@ function getRandomColor() {
   return randomColor
 }
 createGrid()
+getGridSize()
