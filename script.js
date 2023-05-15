@@ -10,7 +10,9 @@ var isRainbowOn = false
 var originalColor = color
 const range = document.querySelector('.range')
 const pickRange = document.querySelector('.pickRange')
+const rangeResult = document.querySelector('.rangeResult')
 var rangeValue = 16
+rangeResult.textContent = `${rangeValue}`
 
 function createGrid() {
     for(let i=0; i<rangeValue; i++) {
@@ -32,9 +34,9 @@ function createGrid() {
 }
 
 function getGridSize() {
-    const gridDivs = document.querySelectorAll('.eachDiv')
     range.addEventListener('input',(e)=>{
         rangeValue = e.target.value
+        rangeResult.textContent = `${rangeValue}`
     })
     pickRange.addEventListener('click',()=>{
         deleteContenedorChild()

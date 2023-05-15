@@ -22,8 +22,15 @@
             <div>
                 <button class="eraser">Eraser</button>
             </div>
-            <div>
-                <input class="range" type="range" min="16" max="64">
+            <div class="rangeDiv">
+                <div class="rangeResult"></div>
+                <input class="range" type="range" min="16" max="64" list="values">
+                <datalist id="values">
+                    <option value="16" label="16"></option>
+                    <option value="32" label="32"></option>
+                    <option value="48" label="48"></option>
+                    <option value="64" label="64"></option>
+                  </datalist>
                 <button class="pickRange">Pick a size</button>
             </div>
         </div>
