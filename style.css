@@ -1,3 +1,9 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: -moz-linear-gradient(pink,rgb(215, 160, 223),rgb(163, 163, 221));
+    align-items: center;
+}
 .horizontalLine {
     display: flex;
 }
@@ -12,4 +18,5 @@
 }
 .eachDiv {
     box-shadow:inset 0px 0px 0px 0.5px gray;
+    background-color: whitesmoke;
 }
