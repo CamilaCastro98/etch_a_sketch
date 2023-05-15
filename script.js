@@ -5,6 +5,10 @@ var color = '#000000'
 const clearAll = document.querySelector('.clearAll')
 const eraser = document.querySelector('.eraser')
 const rainbow = document.querySelector('.rainbow')
+const stopR = document.querySelector('.stopR')
+var isRainbowOn = false
+var originalColor = color
+
 
 function createGrid() {
     for(let i=0; i<16; i++) {
@@ -22,7 +26,7 @@ function createGrid() {
             }
      }   
     document.querySelector('body').appendChild(contenedor)
-    getHover()
+    getTheDraw()
     changeColor()
 }
 
@@ -30,26 +34,31 @@ function paintDivs() {
     this.style.backgroundColor = color
 }
 
-function getHover() {
+function getTheDraw() {
     const gridDivs = document.querySelectorAll('.eachDiv')
-        contenedor.addEventListener('mousedown',()=>{
-            gridDivs.forEach(div =>{
-                div.addEventListener('mousemove',paintDivs)
-            }) 
-        })
-        contenedor.addEventListener('mouseup',()=>{
-            gridDivs.forEach(div => {
-                div.removeEventListener('mousemove',paintDivs)
-            })
-        })
+    getHover(gridDivs)
     getClearAll(gridDivs)
     getEraser(gridDivs)
     getRainbow(gridDivs)
 }
 
+function getHover(a) {
+    contenedor.addEventListener('mousedown',()=>{
+        a.forEach(div =>{
+            div.addEventListener('mousemove',paintDivs)
+        }) 
+    })
+    contenedor.addEventListener('mouseup',()=>{
+        a.forEach(div => {
+            div.removeEventListener('mousemove',paintDivs)
+        })
+    })
+}
+
 function changeColor() {
     colorInput.addEventListener('input',(e)=>{
         color = `${e.target.value}`
+        originalColor = color
     })
 }
 
@@ -68,34 +77,51 @@ function getEraser(a) {
 }
 
 function getRainbow(a) {
-    rainbow.addEventListener('click',()=>{
-        contenedor.addEventListener('mousedown',()=>{
-            a.forEach(div =>{
-                div.addEventListener('mousemove',stablishRandomColor)
-             })
-        })
-        contenedor.addEventListener('mouseup',()=>{
-            a.forEach(div => {
-                div.removeEventListener('mousemove',stablishRandomColor)
-            })
-        })
-    })
+  rainbow.addEventListener('click',()=> {
+      isRainbowOn = true
+      getRainbowOn(a) 
+  })
+  stopR.addEventListener('click',()=>{
+    isRainbowOn = false
+    colorInput.value = originalColor;
+    getRainbowOn(a)
+})
+}
+
+function getRainbowOn(a) {
+  if(isRainbowOn) {
+      contenedor.addEventListener('mousedown',()=>{
+          a.forEach(div =>{
+              div.addEventListener('mousemove',stablishRandomColor)
+           })
+      })
+      contenedor.addEventListener('mouseup',()=>{
+          a.forEach(div => {
+              div.removeEventListener('mousemove',stablishRandomColor)
+          })
+      })
+  } else {
+      a.forEach(div => {
+          div.removeEventListener('mousemove', stablishRandomColor);
+        });
+  }
 }
 
 function stablishRandomColor() {
-    const randomColor = getRandomColor()
-            this.style.backgroundColor = randomColor
+  if(isRainbowOn) {
+  const randomColor = getRandomColor()
+          this.style.backgroundColor = randomColor
+  } else { this.style.backgroundColor = color}
 }
 
 function getRandomColor() {
-    let randomColor = ''
-    let randomNumber
-        for(let i=0; i<6; i++){
-            randomNumber = (Math.random()*10).toFixed()
-            randomColor = `${randomColor}${randomNumber}`
-    }
-    randomColor = `#${randomColor}`
-    return randomColor
+  let randomColor = ''
+  let randomNumber
+      for(let i=0; i<6; i++){
+          randomNumber = (Math.random()*10).toFixed()
+          randomColor = `${randomColor}${randomNumber}`
+  }
+  randomColor = `#${randomColor}`
+  return randomColor
 }
 createGrid()
-
