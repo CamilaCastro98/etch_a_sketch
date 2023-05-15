@@ -11,7 +11,6 @@
         <div class="pickStuff">
             <div class="pickColor">
                 <input class="colorInput" type="color">
-                <label>Pick a color!</label>
             </div>
             <div>
                 <button class="clearAll">Clear All</button>
@@ -24,8 +23,9 @@
             </div>
         </div>
         <div class="rangeStuff">
+            <div class="rangeAndLines">
             <div class="rangeDiv">
-                <div class="rangeResult"></div>
+                <div class="rangeAndResult">
                 <input class="range" type="range" min="16" max="64" list="values">
                 <datalist id="values">
                     <option value="16" label="16"></option>
@@ -33,7 +33,10 @@
                     <option value="48" label="48"></option>
                     <option value="64" label="64"></option>
                   </datalist>
+                  <div class="rangeResult"></div>
+                </div>
                 <button class="pickRange">Pick a size</button>
+            </div>
                 <button class="gridLines">Show grid lines</button>
             </div>
         </div>
