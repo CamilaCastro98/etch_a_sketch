@@ -26,6 +26,7 @@ function createGrid() {
                 div.classList.add('eachDiv')
                 div.style.width = eachDivSize + 'px'
                 div.style.height = eachDivSize + 'px'
+                div.setAttribute('draggable', false)
                 horizontalLine.appendChild(div)
             }
      }   
